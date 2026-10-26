@@ -6,11 +6,6 @@ An end-to-end Machine Learning pipeline for large-scale financial fraud detectio
 
 ---
 
-## Architecture
-<img width="2284" height="1485" alt="FinGuard Architecture" src="https://github.com/user-attachments/assets/97720a5a-a91d-4f11-ab2e-04f838637f03" />
-
----
-
 ## Table of Contents
 1. [Architecture](#architecture)
 2. [Project Overview](#project-overview)
