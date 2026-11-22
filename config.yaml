@@ -1,0 +1,26 @@
+paths:
+  raw_dir: data/raw
+  interim_dir: data/interim
+  processed_dir: data/processed
+  models_dir: models
+
+raw_files:
+  users: users_data.csv
+  cards: cards_data.csv
+  transactions: transactions_data.csv
+  fraud_labels: train_fraud_labels.json
+
+interim_files:
+  users: users_clean.parquet
+  cards: cards_clean.parquet
+  transactions: transactions_clean.parquet
+  master: master.parquet
+
+processed_files:
+  classification: df_classification.parquet
+  train: train.parquet
+  test: test.parquet
+
+split:
+  train_ratio: 0.8
+  time_column: transaction_datetime

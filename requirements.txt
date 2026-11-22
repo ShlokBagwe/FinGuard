@@ -1,0 +1,27 @@
+# FinGuard: Online Transaction Fraud Detection System - Project Requirements
+
+# Core Data Processing & Analysis
+numpy>=2.0.0
+pandas>=2.2.0
+polars>=1.0.0
+scipy>=1.15.0
+
+# Machine Learning, Modeling & Evaluation
+scikit-learn>=1.5.0
+xgboost>=2.0.0
+optuna>=3.6.0
+statsmodels>=0.14.0
+shap>=0.45.0
+joblib>=1.4.0
+
+# Visualization
+matplotlib>=3.9.0
+seaborn>=0.13.0
+
+# Parquet Storage & IO Engines
+pyarrow>=18.0.0
+fastparquet>=2024.5.0
+
+# Utilities & Data Access
+kagglehub>=0.3.0
+tqdm>=4.66.0
