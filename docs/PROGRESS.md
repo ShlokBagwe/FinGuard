@@ -14,13 +14,17 @@ Read this first before every task. Update it after every task.
     `cards`: (6146, 12), `transactions`: (13305915, 13))
 - Step 4: merging module (`src/finguard/data/merging.py` and `scripts/run_merging.py`)
   - Verified `master.parquet` output: `(13305915, 38)`, `target` non-null count: `8914963`
+- Step 5: feature preprocessing module (`src/finguard/features/preprocessing.py` and
+  `scripts/run_features.py`)
+  - Verified `df_classification.parquet` output: `(8914963, 37)`,
+    `transaction_datetime` is `datetime64[us]` with `0` nulls
 
 ## In progress
 - (nothing right now)
 
 ## Next
-- Step 5: features module (`03_Feature_Engineering/01_Feature_Engineering_Preprocessing.ipynb`)
-- Then: splitting, training, evaluation, drift modules
+- Step 6: velocity, splitting, and feature selection (`03_Feature_Engineering/02_Velocity_Splitting_and_Selection.ipynb`)
+- Then: training, evaluation, drift modules
 - Then: Streamlit app
 - Then: clustering and anomaly detection (notebook first, then modules)
 
@@ -33,3 +37,6 @@ Read this first before every task. Update it after every task.
   model are rebuilt.
 - Note on FE1 Cell 7 drops: `amount_bins`, `age_group`, `income_group`, `debt_group`
   were EDA-only columns excluded from `master.parquet`.
+- Note on FE1 vs. FE2 columns: FE1 Cell 14 creates `is_refund` and drops `amount`,
+  producing `(8914963, 37)`. FE2 Cell 1/Cell 17 loaded a version of
+  `df_classification_2.parquet` that had `amount` instead of `is_refund`.
