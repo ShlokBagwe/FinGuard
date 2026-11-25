@@ -13,7 +13,8 @@ Move working notebook logic into a module function WITHOUT changing the result.
 2. Copy the logic exactly. Do not improve, rename columns, or change numbers.
 3. Wrap it in the function name, inputs and outputs the user gave.
 4. Remove everything that is not logic: plots, display(), shape prints, EDA checks.
-5. Replace hardcoded paths, column lists and settings with values from the config.
+5. Replace hardcoded paths and settings with values from the config. Keep column
+   names that belong to the cleaning logic inside the function.
 6. Write a short run check (in a scripts/ file or at the end of your reply) that runs
    the function and prints shape and columns, so the user can compare them with the
    notebook output.

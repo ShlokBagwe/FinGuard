@@ -3,5 +3,5 @@ CLEANED_NOTEBOOKS_CHANGELOG.md
 .venv/
 __pycache__/
 .ipynb_checkpoints/
-data/
+/data/
 GEMINI.md
