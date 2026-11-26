@@ -21,6 +21,7 @@ processed_files:
   velocity: df_velocity.parquet
   train: train.parquet
   test: test.parquet
+  split_info: split_info.json
 
 split:
   train_ratio: 0.8
@@ -48,3 +49,64 @@ features:
   drop_low_importance:
     - credit_score
     - current_age
+
+model:
+  # Final numerical feature set after correlation and VIF pruning.
+  numerical_features:
+    - amount
+    - abs_amount
+    - debt_to_income
+    - hour
+    - day_of_week
+    - account_age_years
+    - years_since_pin_change
+    - txn_count_last_24h
+    - amount_sum_last_24h
+    - customer_avg_amount
+    - customer_txn_count
+    - amount_zscore
+    - mcc_fraud_rate
+    - mcc_avg_amount
+    - mcc_txn_count
+    - city_fraud_rate
+    - city_avg_amount
+    - city_unique_customers
+    - state_txn_count
+    - num_credit_cards
+  # Final categorical feature set used by the fraud classifier.
+  categorical_features:
+    - errors
+    - card_brand
+    - card_type
+  # Low-impact features removed to reduce noise without losing PR-AUC.
+  drop_low_impact:
+    - client_fraud_rate
+    - is_online
+    - use_chip
+    - gender
+    - has_chip
+    - weekend_flag
+    - num_cards_issued
+  # Meaningful error categories retained; all others map to "Other Error".
+  keep_errors:
+    - Bad CVV
+    - Bad PIN
+    - Bad Card Number
+    - Insufficient Balance
+    - No Error
+  # Regularized XGBoost hyperparameters selected for imbalanced fraud detection.
+  xgb_params:
+    tree_method: hist
+    subsample: 0.8
+    scale_pos_weight: 100
+    reg_lambda: 5
+    n_estimators: 150
+    min_child_weight: 20
+    max_depth: 5
+    learning_rate: 0.1
+    gamma: 2
+    colsample_bytree: 0.8
+    random_state: 42
+  # Output filenames saved under paths.models_dir.
+  model_file: xgb_fraud_pipeline.joblib
+  info_file: model_info.json

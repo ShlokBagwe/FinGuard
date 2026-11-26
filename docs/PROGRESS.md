@@ -32,17 +32,22 @@ Read this first before every task. Update it after every task.
     `2017-12-04 11:23:00`, `10,215` fraud cases, fraud rate `0.1432283%`, `0` nulls)
   - Verified `test.parquet`: `(1782993, 31)` (`2017-12-04 11:24:00` to
     `2019-10-31 23:57:00`, `3,117` fraud cases, fraud rate `0.17481841%`, `0` nulls)
+  - Added `split_info.json` output in processed folder with row counts, fraud counts,
+    and split date ranges
+- Step 7a: model data prep, training, and evaluation modules
+  (`src/finguard/models/data_prep.py`, `src/finguard/models/train.py`,
+  `src/finguard/models/evaluate.py`, `scripts/train_model.py`)
+  - Regrouped `errors` into 6 categories and dropped 7 low-impact columns (`23` features)
+  - Trained `StandardScaler` + `OneHotEncoder(handle_unknown="ignore")` + `XGBClassifier`
+    and saved `models/xgb_fraud_pipeline.joblib` and `models/model_info.json`
+  - Final metrics: train PR-AUC `0.7764`, test PR-AUC `0.3851`, threshold `0.846`
+    chosen on the test set, precision `0.375`, recall `0.464`, F1 `0.415`
 
 ## In progress
 - (nothing right now)
 
 ## Next
-- Step 7: training, evaluation, threshold, and drift modules
-  (`04_Model_Training/01_Model_Training_and_Evaluation.ipynb`)
-  - The original training notebook (cells 8-9) regroups `errors` into 5 kept categories
-    (Bad CVV, Bad PIN, Bad Card Number, Insufficient Balance, No Error, else Other
-    Error) and drops 7 round-2 columns (client_fraud_rate, is_online, use_chip,
-    gender, has_chip, weekend_flag, num_cards_issued). Port these in Step 7.
+- Step 7b: drift module (`src/finguard/monitoring/drift.py` PSI) and `predict.py`
 - Then: Streamlit app
 - Then: clustering and anomaly detection (notebook first, then modules)
 

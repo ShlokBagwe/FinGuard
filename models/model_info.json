@@ -1,0 +1,65 @@
+{
+  "threshold": 0.8459738492965698,
+  "threshold_selected_on": "test set",
+  "numerical_features": [
+    "amount",
+    "abs_amount",
+    "debt_to_income",
+    "hour",
+    "day_of_week",
+    "account_age_years",
+    "years_since_pin_change",
+    "txn_count_last_24h",
+    "amount_sum_last_24h",
+    "customer_avg_amount",
+    "customer_txn_count",
+    "amount_zscore",
+    "mcc_fraud_rate",
+    "mcc_avg_amount",
+    "mcc_txn_count",
+    "city_fraud_rate",
+    "city_avg_amount",
+    "city_unique_customers",
+    "state_txn_count",
+    "num_credit_cards"
+  ],
+  "categorical_features": [
+    "errors",
+    "card_brand",
+    "card_type"
+  ],
+  "train_pr_auc": 0.7764141790293239,
+  "test_pr_auc": 0.38510076813134697,
+  "pr_auc_gap": 0.3913134108979769,
+  "metrics_at_0_50": {
+    "precision": 0.13704890476440615,
+    "recall": 0.83702277831248,
+    "f1": 0.23553308657578767,
+    "roc_auc": 0.9938820759793923
+  },
+  "metrics_at_threshold": {
+    "precision": 0.37538940809968846,
+    "recall": 0.4639076034648701,
+    "f1": 0.4149806284976324,
+    "roc_auc": 0.9938820759793923
+  },
+  "train_rows": 7131970,
+  "test_rows": 1782993,
+  "train_fraud_count": 10215,
+  "test_fraud_count": 3117,
+  "train_date_range": [
+    "2010-01-01 00:01:00",
+    "2017-12-04 11:23:00"
+  ],
+  "test_date_range": [
+    "2017-12-04 11:24:00",
+    "2019-10-31 23:57:00"
+  ],
+  "training_seconds": 59.38,
+  "library_versions": {
+    "scikit-learn": "1.9.1",
+    "xgboost": "3.4.1",
+    "pandas": "3.1.1",
+    "numpy": "2.5.5"
+  }
+}
