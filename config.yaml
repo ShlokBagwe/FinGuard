@@ -18,6 +18,7 @@ interim_files:
 
 processed_files:
   classification: df_classification.parquet
+  velocity: df_velocity.parquet
   train: train.parquet
   test: test.parquet
 

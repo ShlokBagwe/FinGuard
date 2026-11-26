@@ -64,28 +64,6 @@ def add_engineered_features(df):
     return df
 
 
-def add_client_aggregates(df):
-    """Compute per-client spend statistics and relative transaction amount features.
-
-    Takes the feature DataFrame and returns a copy with client aggregates merged.
-    """
-    df = df.copy()
-
-    client_stats = df.groupby("client_id_x")["abs_amount"].agg(
-        customer_avg_amount="mean",
-        customer_std_amount="std",
-        customer_txn_count="count",
-    )
-    df = df.merge(client_stats, on="client_id_x", how="left")
-
-    df["amount_vs_avg"] = df["abs_amount"] / df["customer_avg_amount"]
-    df["amount_zscore"] = (
-        (df["abs_amount"] - df["customer_avg_amount"])
-        / df["customer_std_amount"]
-    )
-    return df
-
-
 def build_transaction_datetime(df):
     """Combine date and time into transaction_datetime and sort by client and timestamp.
 
