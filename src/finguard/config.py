@@ -19,3 +19,4 @@ PROCESSED_FILES = config["processed_files"]
 
 TRAIN_RATIO = config["split"]["train_ratio"]
 TIME_COLUMN = config["split"]["time_column"]
+FEATURES = config["features"]

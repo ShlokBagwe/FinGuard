@@ -36,7 +36,7 @@ def filter_and_drop_columns(df):
 
 
 def add_engineered_features(df):
-    """Create financial ratios, calendar features, refund flag, and card-age features.
+    """Create financial ratios, calendar features, and card-age features.
 
     Takes the filtered DataFrame and returns a transformed copy.
     """
@@ -51,9 +51,7 @@ def add_engineered_features(df):
     df["day_of_week"] = df["date"].dt.dayofweek
     df["weekend_flag"] = (df["day_of_week"] >= 5).astype(int)
 
-    # Signed amount is replaced by the refund indicator alongside abs_amount.
-    df["is_refund"] = (df["amount"] < 0).astype(int)
-    df = df.drop("amount", axis=1)
+    # Keep amount because its sign already marks refunds and the trained model used it.
 
     df["acct_open_date"] = pd.to_datetime(df["acct_open_date"])
     df["account_age_years"] = df["date"].dt.year - df["acct_open_date"].dt.year

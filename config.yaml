@@ -25,3 +25,26 @@ processed_files:
 split:
   train_ratio: 0.8
   time_column: transaction_datetime
+
+features:
+  # Redundant features dropped after correlation analysis.
+  drop_correlated:
+    - amount_vs_avg
+    - per_capita_income
+    - city_txn_count
+  # High-VIF multicollinearity and redundant raw monetary features.
+  drop_vif:
+    - state_fraud_rate
+    - state_avg_amount
+    - state_unique_customers
+    - mcc
+    - customer_std_amount
+    - yearly_income
+    - total_debt
+    - credit_limit
+    - available_credit_per_card
+    - credit_limit_to_income
+  # Weak demographic features dropped after feature-importance selection.
+  drop_low_importance:
+    - credit_score
+    - current_age
