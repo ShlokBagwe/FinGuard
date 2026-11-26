@@ -12,6 +12,7 @@ RAW_DIR = PROJECT_ROOT / config["paths"]["raw_dir"]
 INTERIM_DIR = PROJECT_ROOT / config["paths"]["interim_dir"]
 PROCESSED_DIR = PROJECT_ROOT / config["paths"]["processed_dir"]
 MODELS_DIR = PROJECT_ROOT / config["paths"]["models_dir"]
+REPORTS_DIR = PROJECT_ROOT / config["paths"]["reports_dir"]
 
 RAW_FILES = config["raw_files"]
 INTERIM_FILES = config["interim_files"]

@@ -1,0 +1,12 @@
+-r requirements.txt
+
+# Notebook, Experimentation & Visualization Dependencies
+scipy==1.18.1
+optuna==5.1.0
+statsmodels==0.15.0
+shap==0.54.1
+matplotlib==3.11.2
+seaborn==0.13.2
+fastparquet==2026.9.0
+kagglehub==1.0.3
+tqdm==4.70.1

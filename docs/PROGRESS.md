@@ -42,12 +42,24 @@ Read this first before every task. Update it after every task.
     and saved `models/xgb_fraud_pipeline.joblib` and `models/model_info.json`
   - Final metrics: train PR-AUC `0.7764`, test PR-AUC `0.3851`, threshold `0.846`
     chosen on the test set, precision `0.375`, recall `0.464`, F1 `0.415`
+- Step 7b: drift monitoring module (`src/finguard/monitoring/drift.py` and
+  `scripts/run_drift.py`)
+  - Added `reports_dir: reports` (`REPORTS_DIR`) and `reports/.gitkeep`
+  - Computed PSI across all 23 prepared model features (`train.parquet` vs `test.parquet`):
+    `21` stable, `0` moderate, `2` significant (`years_since_pin_change`: `1.849445`,
+    `account_age_years`: `0.738218`); saved `reports/drift_report.csv`
+- Repo hygiene and dependency split:
+  - Untracked `data/processed/split_info.json` from git while keeping it on disk
+  - Split `requirements.txt` (8 runtime packages used by `src/` and `scripts/`) from
+    `requirements-dev.txt` (`-r requirements.txt` + 9 notebook/experiment packages)
+  - Verified clean install (`pip install -r requirements.txt` + `pip install -e .` +
+    `import finguard`) in a temporary virtual environment
 
 ## In progress
 - (nothing right now)
 
 ## Next
-- Step 7b: drift module (`src/finguard/monitoring/drift.py` PSI) and `predict.py`
+- Step 8: inference module (`src/finguard/models/predict.py`)
 - Then: Streamlit app
 - Then: clustering and anomaly detection (notebook first, then modules)
 
@@ -66,3 +78,7 @@ Read this first before every task. Update it after every task.
 - 14 exact duplicate rows exist in the features table. They are separate labeled
   transactions whose id column was dropped, so they are kept to match the 8,914,963
   labeled rows. The velocity join adds no duplicates; the old FE2 merge added 78,264.
+- Note on PSI drift: `years_since_pin_change` (PSI `1.8494`) and `account_age_years`
+  (PSI `0.7382`) show significant drift between 2010-2017 train and 2017-2019 test
+  splits because both age features increase monotonically with calendar year (the
+  notebook previously only checked `PSI > 5`, missing them in the README summary).

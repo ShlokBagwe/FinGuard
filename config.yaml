@@ -3,6 +3,7 @@ paths:
   interim_dir: data/interim
   processed_dir: data/processed
   models_dir: models
+  reports_dir: reports
 
 raw_files:
   users: users_data.csv
