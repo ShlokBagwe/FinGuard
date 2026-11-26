@@ -55,7 +55,7 @@
     "2017-12-04 11:24:00",
     "2019-10-31 23:57:00"
   ],
-  "training_seconds": 59.38,
+  "training_seconds": 55.09,
   "library_versions": {
     "scikit-learn": "1.9.1",
     "xgboost": "3.4.1",

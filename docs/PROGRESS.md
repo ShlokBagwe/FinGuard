@@ -54,14 +54,27 @@ Read this first before every task. Update it after every task.
     `requirements-dev.txt` (`-r requirements.txt` + 9 notebook/experiment packages)
   - Verified clean install (`pip install -r requirements.txt` + `pip install -e .` +
     `import finguard`) in a temporary virtual environment
+- Pipeline runner (`scripts/run_pipeline.py`):
+  - Runs `run_cleaning`, `run_merging`, `run_features`, `run_velocity`, `run_splitting`,
+    `train_model`, `run_drift` sequentially as separate subprocesses
+  - Verified running from `run_splitting` (`run_splitting` 40.22s, `train_model`
+    92.34s, `run_drift` 11.84s) with test PR-AUC `0.3851`
 
 ## In progress
 - (nothing right now)
 
 ## Next
-- Step 8: inference module (`src/finguard/models/predict.py`)
-- Then: Streamlit app
+- Step 8: inference module (`src/finguard/models/predict.py`) and end-to-end tests
+- Then: Streamlit app (`app/`)
 - Then: clustering and anomaly detection (notebook first, then modules)
+
+## How to run
+- **Full pipeline:** `python scripts/run_pipeline.py`
+- **Start from a specific stage:** `python scripts/run_pipeline.py run_splitting`
+  (valid stages: `run_cleaning`, `run_merging`, `run_features`, `run_velocity`,
+  `run_splitting`, `train_model`, `run_drift`)
+- **Run a single script alone:** `python scripts/run_drift.py` (or any script under
+  `scripts/`)
 
 ## Notes and decisions
 - Model is trained on Kaggle and downloaded as a pickle (whole pipeline + threshold
